@@ -24,21 +24,6 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private List<Orden> ordenes;
 
-    public Usuario() {
-    }
-
-    public Usuario(Long id, String nombre, String username, String email, String direccion, String telefono, String tipo, String password, List<Producto> productos, List<Orden> orden) {
-        this.id = id;
-        this.nombre = nombre;
-        this.username = username;
-        this.email = email;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.tipo = tipo;
-        this.password = password;
-        this.productos = productos;
-        this.ordenes = orden;
-    }
 
     @Override
     public String toString() {
@@ -54,6 +39,27 @@ public class Usuario {
                 ", productos=" + productos +
                 ", orden=" + ordenes +
                 '}';
+    }
+
+    public Usuario(Long id, String nombre, String username, String email, String direccion, String telefono, String tipo, String password, List<Producto> productos, List<Orden> ordenes) {
+        this.id = id;
+        this.nombre = nombre;
+        this.username = username;
+        this.email = email;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.tipo = tipo;
+        this.password = password;
+        this.productos = productos;
+        this.ordenes = ordenes;
+    }
+
+    public List<Orden> getOrdenes() {
+        return ordenes;
+    }
+
+    public void setOrdenes(List<Orden> ordenes) {
+        this.ordenes = ordenes;
     }
 
     public List<Producto> getProductos() {
