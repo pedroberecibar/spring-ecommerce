@@ -1,6 +1,14 @@
 package com.curso.ecommerce.model;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String username;
@@ -10,10 +18,16 @@ public class Usuario {
     private String tipo;
     private String password;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<Producto> productos;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Orden> ordenes;
+
     public Usuario() {
     }
 
-    public Usuario(Long id, String nombre, String username, String email, String direccion, String telefono, String tipo, String password) {
+    public Usuario(Long id, String nombre, String username, String email, String direccion, String telefono, String tipo, String password, List<Producto> productos, List<Orden> orden) {
         this.id = id;
         this.nombre = nombre;
         this.username = username;
@@ -22,14 +36,8 @@ public class Usuario {
         this.telefono = telefono;
         this.tipo = tipo;
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.productos = productos;
+        this.ordenes = orden;
     }
 
     @Override
@@ -43,8 +51,35 @@ public class Usuario {
                 ", telefono='" + telefono + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", password='" + password + '\'' +
+                ", productos=" + productos +
+                ", orden=" + ordenes +
                 '}';
     }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+    public List<Orden> getOrden() {
+        return ordenes;
+    }
+
+    public void setOrden(List<Orden> orden) {
+        this.ordenes = orden;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     public String getNombre() {
         return nombre;
