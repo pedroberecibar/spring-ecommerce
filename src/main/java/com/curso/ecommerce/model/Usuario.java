@@ -1,6 +1,7 @@
 package com.curso.ecommerce.model;
 
 import jakarta.persistence.*;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Usuario {
     private String password;
 
     @OneToMany(mappedBy = "usuario")
+    @ToString.Exclude
     private List<Producto> productos;
 
     @OneToMany(mappedBy = "usuario")

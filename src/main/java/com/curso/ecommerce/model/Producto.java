@@ -37,12 +37,12 @@ public class Producto {
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                ", imagen='" + imagen + '\'' +
+                ", imagen='" + (imagen != null ? imagen : "N/A") + '\'' +  // Si 'imagen' es null, se mostrará "N/A"
                 ", precio=" + precio +
                 ", cantidad=" + cantidad +
-                ", usuario=" + usuario +
                 '}';
     }
+
 
     public Long getId() {
         return id;
